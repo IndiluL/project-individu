@@ -32,6 +32,7 @@ public class main extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         menuKasir = new javax.swing.JMenuItem();
         menuPelanggan = new javax.swing.JMenuItem();
+        menuBarang = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,14 @@ public class main extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuPelanggan);
+
+        menuBarang.setText("Barang");
+        menuBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBarangActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuBarang);
 
         jMenuBar1.add(jMenu1);
 
@@ -93,6 +102,13 @@ public class main extends javax.swing.JFrame {
         pelanggan.setVisible(true);
         pelanggan.setLocationRelativeTo(null);
     }//GEN-LAST:event_menuPelangganActionPerformed
+
+    private void menuBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBarangActionPerformed
+        // TODO add your handling code here:
+        form_barang barang = new form_barang();
+        barang.setVisible(true);
+        barang.setLocationRelativeTo(null);
+    }//GEN-LAST:event_menuBarangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,9 +148,9 @@ public class main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 //                new main().setVisible(true);
-                  main mainMenu = new main();
-                  mainMenu.setLocationRelativeTo(null);
-                  mainMenu.setVisible(true);
+                main mainMenu = new main();
+                mainMenu.setLocationRelativeTo(null);
+                mainMenu.setVisible(true);
             }
         });
     }
@@ -143,6 +159,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem menuBarang;
     private javax.swing.JMenuItem menuKasir;
     private javax.swing.JMenuItem menuPelanggan;
     // End of variables declaration//GEN-END:variables

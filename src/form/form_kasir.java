@@ -30,11 +30,11 @@ public class form_kasir extends javax.swing.JFrame {
         initComponents();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-   
+
         kosong();
         aktif();
         datatable();
-        klikTable();
+//        klikTable();
         
         Date date = new Date();
         SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,27 +45,6 @@ public class form_kasir extends javax.swing.JFrame {
         txtcari.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt){
                 datatable();
-            }
-        });
-    }
-    
-    private void klikTable(){
-        tablekasir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int baris = tablekasir.getSelectedRow();
-                if (baris >= 0) {
-                    txtid.setText(tablekasir.getValueAt(baris, 0).toString());
-                    txtnama.setText(tablekasir.getValueAt(baris, 1).toString());
-                    String jk = tablekasir.getValueAt(baris, 2).toString();
-                    if (jk.equals("Laki-Laki")) {
-                        klaki.setSelected(true);
-                    } else {
-                        kperempuan.setSelected(true);
-                    }
-                    txtalamat.setText(tablekasir.getValueAt(baris, 3).toString());
-                    txttelp.setText(tablekasir.getValueAt(baris, 4).toString());
-                    txtpass.setText(tablekasir.getValueAt(baris, 5).toString());
-                }
             }
         });
     }
@@ -90,7 +69,7 @@ public class form_kasir extends javax.swing.JFrame {
             String cariitem=txtcari.getText();
             
             try{
-                String sql = "SELECT * FROM kasir WHERE id_kasir LIKE '%" + cariitem + "%' " + "OR nama_kasir LIKE '%" + cariitem + "%' " + "OR jenis_kelamin LIKE '%" + cariitem + "%' " + "OR alamat LIKE '%" + cariitem + "%' " + "OR no_telp LIKE '%" + cariitem + "%' "  + "OR password LIKE '%" + cariitem + "%' " + "ORDER BY id_kasir ASC";
+                String sql = "SELECT * FROM data_kasir WHERE id_kasir LIKE '%" + cariitem + "%' " + "OR nama_kasir LIKE '%" + cariitem + "%' " + "OR jenis_kelamin LIKE '%" + cariitem + "%' " + "OR alamat LIKE '%" + cariitem + "%' " + "OR no_telp LIKE '%" + cariitem + "%' "  + "OR password LIKE '%" + cariitem + "%' " + "ORDER BY id_kasir ASC";
                 Statement stat = koneksi.createStatement();
                 ResultSet hasil = stat.executeQuery(sql);
                 
@@ -368,6 +347,11 @@ public class form_kasir extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablekasir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablekasirMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablekasir);
 
         btnkeluar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -410,9 +394,10 @@ public class form_kasir extends javax.swing.JFrame {
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnkeluar))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnkeluar)
+                .addGap(7, 7, 7))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,7 +416,7 @@ public class form_kasir extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -450,7 +435,7 @@ public class form_kasir extends javax.swing.JFrame {
         } else if (kperempuan.isSelected()){
             jenis = "Perempuan";
         }
-        String sql = "insert into kasir values (?,?,?,?,?,?,?)";
+        String sql = "insert into data_kasir values (?,?,?,?,?,?,?)";
         try{
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtid.getText());
@@ -481,13 +466,14 @@ public class form_kasir extends javax.swing.JFrame {
             jenis = "Perempuan";
         }
         try{
-            String sql = "UPDATE kasir set nama_kasir=?, jenis_kelamin=?, alamat=?, no_telp=? WHERE id_kasir=?";
+            String sql = "UPDATE data_kasir set nama_kasir=?, jenis_kelamin=?, alamat=?, no_telp=?, password=? WHERE id_kasir=?";
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtnama.getText());
             stat.setString(2, jenis);
             stat.setString(3, txtalamat.getText());
             stat.setString(4, txttelp.getText());
-            stat.setString(5, txtid.getText());
+            stat.setString(5, txtpass.getText());
+            stat.setString(6, txtid.getText());
             
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
@@ -509,7 +495,7 @@ public class form_kasir extends javax.swing.JFrame {
                 txtid.requestFocus();
                 return;
             }
-            String sql = "DELETE FROM kasir WHERE id_kasir = ?";
+            String sql = "DELETE FROM data_kasir WHERE id_kasir = ?";
             try {
                 PreparedStatement stat = koneksi.prepareStatement(sql);
                 stat.setString(1, id);
@@ -544,6 +530,30 @@ public class form_kasir extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnkeluarActionPerformed
+
+    private void tablekasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablekasirMouseClicked
+        // TODO add your handling code here:
+        int bar = tablekasir.getSelectedRow();
+        String a = model.getValueAt(bar, 0).toString();
+        String b = model.getValueAt(bar, 1).toString();
+        String c = model.getValueAt(bar, 2).toString();
+        String d = model.getValueAt(bar, 3).toString();
+        String e = model.getValueAt(bar, 4).toString();
+        String f = model.getValueAt(bar, 5).toString();
+        String g = model.getValueAt(bar, 6).toString();
+
+        txtid.setText(a);
+        txtnama.setText(b);
+        if ("Laki-Laki".equals(c)){
+            klaki.setSelected(true);
+        }else {
+            kperempuan.setSelected(true);
+        }
+        txtalamat.setText(d);
+        txttelp.setText(e);
+        txtpass.setText(f);
+        txttanggal.setText(g);
+    }//GEN-LAST:event_tablekasirMouseClicked
 
     /**
      * @param args the command line arguments
