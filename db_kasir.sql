@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Apr 2025 pada 09.53
+-- Waktu pembuatan: 23 Apr 2025 pada 15.16
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -26,10 +26,32 @@ USE `db_kasir`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kasir`
+-- Struktur dari tabel `data_barang`
 --
 
-CREATE TABLE `kasir` (
+CREATE TABLE `data_barang` (
+  `kode_barang` varchar(20) NOT NULL,
+  `nama_barang` varchar(100) DEFAULT NULL,
+  `jenis` varchar(30) DEFAULT NULL,
+  `harga_beli` decimal(15,2) DEFAULT NULL,
+  `harga_jual` decimal(15,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `data_barang`
+--
+
+INSERT INTO `data_barang` (`kode_barang`, `nama_barang`, `jenis`, `harga_beli`, `harga_jual`) VALUES
+('BR001', 'Indomie', 'Makanan', 2000.00, 3000.00),
+('BR002', 'Teh Botol', 'Minuman', 3000.00, 5000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_kasir`
+--
+
+CREATE TABLE `data_kasir` (
   `id_kasir` varchar(10) NOT NULL,
   `nama_kasir` varchar(50) NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
@@ -40,19 +62,19 @@ CREATE TABLE `kasir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `kasir`
+-- Dumping data untuk tabel `data_kasir`
 --
 
-INSERT INTO `kasir` (`id_kasir`, `nama_kasir`, `jenis_kelamin`, `alamat`, `no_telp`, `password`, `tgl_masuk`) VALUES
-('ID001', 'Alif', 'Laki-Laki', 'Jakarta', '08123456789', 'admin123', '2025-04-19');
+INSERT INTO `data_kasir` (`id_kasir`, `nama_kasir`, `jenis_kelamin`, `alamat`, `no_telp`, `password`, `tgl_masuk`) VALUES
+('ID001', 'Alif', 'Laki-Laki', 'Ciamis', '08123456789', 'admin123', '2025-04-19');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Struktur dari tabel `data_pelanggan`
 --
 
-CREATE TABLE `pelanggan` (
+CREATE TABLE `data_pelanggan` (
   `id_pelanggan` varchar(10) NOT NULL,
   `nama_pelanggan` varchar(50) DEFAULT NULL,
   `jenis_kelamin` varchar(10) DEFAULT NULL,
@@ -61,10 +83,11 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pelanggan`
+-- Dumping data untuk tabel `data_pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `no_telp`, `alamat`) VALUES
+INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `no_telp`, `alamat`) VALUES
+('', '', NULL, '', ''),
 ('CS001', 'Alip', 'Laki-Laki', '08765432198', 'Ciamis');
 
 --
@@ -72,15 +95,21 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `no_
 --
 
 --
--- Indeks untuk tabel `kasir`
+-- Indeks untuk tabel `data_barang`
 --
-ALTER TABLE `kasir`
+ALTER TABLE `data_barang`
+  ADD PRIMARY KEY (`kode_barang`);
+
+--
+-- Indeks untuk tabel `data_kasir`
+--
+ALTER TABLE `data_kasir`
   ADD PRIMARY KEY (`id_kasir`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indeks untuk tabel `data_pelanggan`
 --
-ALTER TABLE `pelanggan`
+ALTER TABLE `data_pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
 COMMIT;
 
