@@ -388,7 +388,7 @@ public class form_barang extends javax.swing.JFrame {
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
         try {
-             String sql = "UPDATE data_barang set nama_barang=?, jenis=?,harga_beli=?, harga_jual=? where kode_barang='"+txtkd.getText()+"'" ;
+            String sql = "UPDATE data_barang set nama_barang=?, jenis=?,harga_beli=?, harga_jual=? where kode_barang='"+txtkd.getText()+"'" ;
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtnama.getText());
             stat.setString(2, cbjenis.getSelectedItem().toString());

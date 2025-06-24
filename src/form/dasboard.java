@@ -9,12 +9,12 @@ package form;
  *
  * @author aliframadhan
  */
-public class main extends javax.swing.JFrame {
+public class dasboard extends javax.swing.JFrame {
 
     /**
      * Creates new form main
      */
-    public main() {
+    public dasboard() {
         initComponents();
     }
 
@@ -33,6 +33,8 @@ public class main extends javax.swing.JFrame {
         menuKasir = new javax.swing.JMenuItem();
         menuPelanggan = new javax.swing.JMenuItem();
         menuBarang = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuNota = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,16 +70,28 @@ public class main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Transaksi");
+
+        menuNota.setText("Nota");
+        menuNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNotaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuNota);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,6 +124,13 @@ public class main extends javax.swing.JFrame {
         barang.setLocationRelativeTo(null);
     }//GEN-LAST:event_menuBarangActionPerformed
 
+    private void menuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotaActionPerformed
+        // TODO add your handling code here:
+        form_nota nota = new form_nota();
+        nota.setVisible(true);
+        nota.setLocationRelativeTo(null);
+    }//GEN-LAST:event_menuNotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -127,14 +148,22 @@ public class main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dasboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dasboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dasboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dasboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -147,8 +176,8 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new main().setVisible(true);
-                main mainMenu = new main();
+//                new dasboard().setVisible(true);
+                dasboard mainMenu = new dasboard();
                 mainMenu.setLocationRelativeTo(null);
                 mainMenu.setVisible(true);
             }
@@ -158,9 +187,11 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuBarang;
     private javax.swing.JMenuItem menuKasir;
+    private javax.swing.JMenuItem menuNota;
     private javax.swing.JMenuItem menuPelanggan;
     // End of variables declaration//GEN-END:variables
 }

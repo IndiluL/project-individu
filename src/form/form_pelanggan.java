@@ -286,7 +286,7 @@ public class form_pelanggan extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Data Pelanggan");
 
         txtcari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

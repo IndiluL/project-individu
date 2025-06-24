@@ -34,7 +34,6 @@ public class form_kasir extends javax.swing.JFrame {
         kosong();
         aktif();
         datatable();
-//        klikTable();
         
         Date date = new Date();
         SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
@@ -450,8 +449,7 @@ public class form_kasir extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             kosong();
             txtid.requestFocus();
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data gagal disimpan"+e);
         }
         datatable();
